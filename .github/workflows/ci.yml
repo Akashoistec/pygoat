@@ -28,7 +28,7 @@ jobs:
           ./sonar-scanner-*/bin/sonar-scanner \
             -Dsonar.projectKey=pygoat-ci \
             -Dsonar.sources=. \
-            -Dsonar.host.url=http://YOUR_SONAR_HOST:9000 \
+            -Dsonar.host.url=http://3.110.69.6:9000 \
             -Dsonar.token=$SONAR_TOKEN
 
       - name: SonarQube Quality Gate
