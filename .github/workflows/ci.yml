@@ -18,6 +18,10 @@ jobs:
         with:
           distribution: 'temurin'
           java-version: '21'
+      - name: Test SonarQube connectivity
+          run: |
+            curl -v http://3.110.69.6:9000
+
 
       - name: SonarQube Scan
         env:
