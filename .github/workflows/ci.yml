@@ -28,7 +28,7 @@ jobs:
           ./sonar-scanner-*/bin/sonar-scanner \
             -Dsonar.projectKey=pygoat-ci \
             -Dsonar.sources=. \
-            -Dsonar.host.url=http://<EC2_PUBLIC_IP>:9000 \
+            -Dsonar.host.url=http://YOUR_SONAR_HOST:9000 \
             -Dsonar.token=$SONAR_TOKEN
 
       - name: SonarQube Quality Gate
@@ -36,4 +36,4 @@ jobs:
         timeout-minutes: 5
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-          SONAR_HOST_URL: http://3.110.69.6/:9000
+          SONAR_HOST_URL: http://3.110.69.6:9000/
