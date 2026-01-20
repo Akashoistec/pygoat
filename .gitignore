@@ -16,3 +16,7 @@ bin
 .vscode/
 
 .scannerwork/
+
+.scannerwork/
+sonar-scanner-*/
+sonar-scanner.zip
