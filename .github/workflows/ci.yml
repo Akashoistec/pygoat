@@ -1,4 +1,3 @@
-#afsg
 name: PyGoat CI - SAST
 
 on:
@@ -20,21 +19,20 @@ jobs:
           distribution: 'temurin'
           java-version: '21'
 
-      - name: Test SonarQube connectivity
-        run: |
-          curl -4 -v http://43.205.229.79:9000
-
-      - name: SonarQube Scan
-        env:
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+      - name: Download Sonar Scanner
         run: |
           curl -sSLo sonar-scanner.zip https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-5.0.1.3006-linux.zip
           unzip sonar-scanner.zip
+
+      - name: Run SonarQube Scan
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        run: |
           ./sonar-scanner-*/bin/sonar-scanner \
             -Dsonar.projectKey=pygoat-ci \
             -Dsonar.sources=. \
             -Dsonar.host.url=http://43.205.229.79:9000 \
-            -Dsonar.token=$SONAR_TOKEN
+            -Dsonar.login=$SONAR_TOKEN
 
       - name: SonarQube Quality Gate
         uses: sonarsource/sonarqube-quality-gate-action@v1
