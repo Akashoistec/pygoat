@@ -1,32 +1,38 @@
-'''
-import subprocess, json
-
-
-cmd_str = "pwd; ls"
-process = subprocess.Popen(
-    cmd_str,
-    shell=True,
-    stdout=subprocess.PIPE, 
-    stderr=subprocess.PIPE)
-stdout, stderr = process.communicate()
-data = stdout.decode('utf-8')
-stderr = stderr.decode('utf-8')
-# res = json.loads(data)
-# print("Stdout\n" + data)
-print(data + stderr)
-'''
 import subprocess
-
 import yaml
+from pathlib import Path
 
-stream = open('/home/fox/test.yaml', 'r')
-data = yaml.safe_load(stream)
+def run_command():
+    # Safe subprocess call (no shell=True)
+    result = subprocess.run(
+        ["pwd"],
+        capture_output=True,
+        text=True,
+        check=True
+    )
 
-'''
-stdout, stderr = data.communicate()
-stdout = stdout.decode('utf-8')
-stderr = stderr.decode('utf-8')
-'''
-print(data + "\n")
-# print(stdout + "\n")
-# print(stderr + "\n")
+    result2 = subprocess.run(
+        ["ls"],
+        capture_output=True,
+        text=True,
+        check=True
+    )
+
+    print(result.stdout)
+    print(result2.stdout)
+
+
+def load_yaml(path: Path):
+    if not path.exists():
+        raise FileNotFoundError(f"{path} does not exist")
+
+    with path.open("r") as f:
+        data = yaml.safe_load(f)
+
+    print(data)
+
+
+if __name__ == "__main__":
+    run_command()
+    load_yaml(Path("test.yaml"))
+
