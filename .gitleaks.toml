@@ -10,7 +10,7 @@ paths = [
   '''dist/''',
   '''build/''',
   '''chatbot/''',
-  '''README.md'''
+  '''README.md''',
  '''introduction/static/js/''',
   '''introduction/views.py'''
 ]
