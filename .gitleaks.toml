@@ -1,0 +1,17 @@
+[extend]
+useDefault = true
+
+paths = [
+  '''lib/''',
+  '''site-packages/''',
+  '''venv/''',
+  '''.venv/''',
+  '''node_modules/''',
+  '''dist/''',
+  '''build/''',
+  '''chatbot/''',
+  '''README.md'''
+ '''introduction/static/js/''',
+  '''introduction/views.py'''
+]
+
